@@ -59,9 +59,9 @@ fun MyButtonExample(){
         Button(onClick = {
 
         }, colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Red,
+            containerColor = Color.Magenta,
             contentColor = Color.White
-        ), border = BorderStroke(1.dp,Color.Green)
+        ), border = BorderStroke(1.dp,Color.White)
         ) {
             Text(text = "Hola")
         }

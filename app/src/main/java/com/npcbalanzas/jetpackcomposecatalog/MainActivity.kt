@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetPackComposeCatalogTheme {
-                MyButton()
+                MyButtonExample()
             }
         }
     }
@@ -49,12 +49,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     JetPackComposeCatalogTheme {
-        MyButton()
+        MyButtonExample()
     }
 }
 
 @Composable
-fun MyButton(){
+fun MyButtonExample(){
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Button(onClick = {
 

@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,7 +19,9 @@ import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -31,6 +34,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -52,7 +56,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetPackComposeCatalogTheme {
-                MyIcon()
+                MyProgress()
             }
         }
     }
@@ -62,7 +66,24 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     JetPackComposeCatalogTheme {
-        MyIcon()
+        MyProgress()
+    }
+}
+
+@Composable
+fun MyProgress(){
+    Column(
+        modifier = Modifier.padding(24.dp).fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+
+        CircularProgressIndicator(color = Color.Red,
+            strokeWidth = 5.dp)
+
+        LinearProgressIndicator(color = Color.Red,
+            trackColor = Color.Green,
+            
+            modifier = Modifier.padding(top = 32.dp))
     }
 }
 

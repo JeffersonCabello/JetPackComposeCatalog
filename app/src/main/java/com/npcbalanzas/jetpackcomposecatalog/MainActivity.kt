@@ -72,18 +72,23 @@ fun DefaultPreview() {
 
 @Composable
 fun MyProgress(){
+
+    var showLoading by rememberSaveable { mutableStateOf(false) }
+
     Column(
         modifier = Modifier.padding(24.dp).fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
 
-        CircularProgressIndicator(color = Color.Red,
-            strokeWidth = 5.dp)
+        if(showLoading){
+            CircularProgressIndicator(color = Color.Red,
+                strokeWidth = 5.dp)
 
-        LinearProgressIndicator(color = Color.Red,
-            trackColor = Color.Green,
-            
-            modifier = Modifier.padding(top = 32.dp))
+            LinearProgressIndicator(color = Color.Red,
+                trackColor = Color.Green,
+
+                modifier = Modifier.padding(top = 32.dp))
+        }
     }
 }
 

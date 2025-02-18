@@ -105,7 +105,13 @@ fun MyProgressAdvance(){
 
 @Composable
 fun MyProgress(){
+<<<<<<< HEAD
     var showLoading by rememberSaveable { mutableStateOf(false) }
+=======
+
+    var showLoading by rememberSaveable { mutableStateOf(false) }
+
+>>>>>>> f65d4c3a67736e26718bb79de247a50e62155aef
     Column(
         modifier = Modifier.padding(24.dp).fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -120,12 +126,15 @@ fun MyProgress(){
 
                 modifier = Modifier.padding(top = 32.dp))
         }
+<<<<<<< HEAD
 
         Button(onClick = {
             showLoading = !showLoading;
         }) {
             Text(text = "Cargar perfil")
         }
+=======
+>>>>>>> f65d4c3a67736e26718bb79de247a50e62155aef
     }
 }
 

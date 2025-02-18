@@ -10,14 +10,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -30,6 +30,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetPackComposeCatalogTheme {
-                MyProgress()
+                MyProgressAdvance()
             }
         }
     }
@@ -66,24 +67,65 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     JetPackComposeCatalogTheme {
-        MyProgress()
+        MyProgressAdvance()
+    }
+}
+
+@Composable
+fun MyProgressAdvance(){
+    var progressStatus by rememberSaveable { mutableFloatStateOf(0f) }
+    Column(modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+
+        CircularProgressIndicator(
+            progress = { progressStatus },
+            color = Color.Red
+        )
+
+        Row(modifier = Modifier.fillMaxWidth().padding(20.dp), Arrangement.Center) {
+            Button(onClick = {
+                if(progressStatus < 1){
+                    progressStatus += 0.1f
+                }
+            }) {
+                Text("Incrementar")
+            }
+
+            Button(onClick = {
+                if(progressStatus > 0){
+                    progressStatus -= 0.1f
+                }
+            }) {
+                Text("Reducir")
+            }
+        }
     }
 }
 
 @Composable
 fun MyProgress(){
+    var showLoading by rememberSaveable { mutableStateOf(false) }
     Column(
         modifier = Modifier.padding(24.dp).fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
 
-        CircularProgressIndicator(color = Color.Red,
-            strokeWidth = 5.dp)
+        if(showLoading){
+            CircularProgressIndicator(color = Color.Red,
+                strokeWidth = 5.dp)
 
-        LinearProgressIndicator(color = Color.Red,
-            trackColor = Color.Green,
-            
-            modifier = Modifier.padding(top = 32.dp))
+            LinearProgressIndicator(color = Color.Red,
+                trackColor = Color.Green,
+
+                modifier = Modifier.padding(top = 32.dp))
+        }
+
+        Button(onClick = {
+            showLoading = !showLoading;
+        }) {
+            Text(text = "Cargar perfil")
+        }
     }
 }
 

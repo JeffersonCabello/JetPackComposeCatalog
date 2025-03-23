@@ -24,6 +24,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -57,7 +59,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetPackComposeCatalogTheme {
-                MyProgressAdvance()
+                MySwitch()
             }
         }
     }
@@ -67,7 +69,26 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     JetPackComposeCatalogTheme {
-        MyProgressAdvance()
+        MySwitch()
+    }
+}
+
+@Composable
+fun MySwitch(){
+    var state by rememberSaveable { mutableStateOf(true) }
+
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+        Switch(checked = state, onCheckedChange = {
+            state = !state
+        }, enabled = true,
+            colors = SwitchDefaults.colors(
+                uncheckedThumbColor = Color.Red,
+                checkedThumbColor = Color.Green,
+                checkedTrackColor = Color.Magenta,
+                uncheckedTrackColor = Color.Cyan,
+                disabledCheckedTrackColor = Color.Yellow,
+                disabledCheckedThumbColor = Color.Yellow))
     }
 }
 
@@ -105,13 +126,8 @@ fun MyProgressAdvance(){
 
 @Composable
 fun MyProgress(){
-<<<<<<< HEAD
-    var showLoading by rememberSaveable { mutableStateOf(false) }
-=======
-
     var showLoading by rememberSaveable { mutableStateOf(false) }
 
->>>>>>> f65d4c3a67736e26718bb79de247a50e62155aef
     Column(
         modifier = Modifier.padding(24.dp).fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -126,15 +142,11 @@ fun MyProgress(){
 
                 modifier = Modifier.padding(top = 32.dp))
         }
-<<<<<<< HEAD
-
         Button(onClick = {
-            showLoading = !showLoading;
+            showLoading = !showLoading
         }) {
             Text(text = "Cargar perfil")
         }
-=======
->>>>>>> f65d4c3a67736e26718bb79de247a50e62155aef
     }
 }
 
@@ -162,7 +174,7 @@ fun MyImage() {
 @Composable
 fun MyButtonExample() {
 
-    var enabled by rememberSaveable { mutableStateOf(true) };
+    var enabled by rememberSaveable { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
